@@ -1,12 +1,12 @@
-data "google_compute_network" "network-data" {
-  name = var.network
-}
+#data "google_compute_network" "network-data" {
+#  name = var.network
+#}
 
 resource "google_compute_subnetwork" "subnetwork" {
   name          = var.subnet_name
   ip_cidr_range = var.subnet_range
   region        = var.region
-  network       = data.google_compute_network.network-data.id
+  network       = google_compute_network.vpc_network.id
 }
 
 resource "google_compute_address" "internal_address" {
